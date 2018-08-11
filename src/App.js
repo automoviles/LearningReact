@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import styles from './App.css';
 import Person from './Person/Person'
 class App extends Component {
 
@@ -34,9 +34,9 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className={styles.App}>
         <h1> Hi I am a react App </h1>
-        <button className="toggleButton" onClick={this.showPersonsHandler}>Toggle Persons </button>
+        <button className={styles.toggleButton} onClick={this.showPersonsHandler}>Toggle Persons </button>
         {this.state.showPersons ? (this.state.persons.map((person, index) => {
           return (
             <Person
