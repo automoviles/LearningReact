@@ -6,37 +6,29 @@ class App extends Component {
   state = {
     persons: [
       {
-        name: 'Max', age: 29
+        id: 1, name: 'Max', age: 29
       },
       {
-        name: 'Manu', age: 30,
+        id: 2, name: 'Manu', age: 30,
       }
-    ]
+    ],
+    showPersons: false
   }
 
-  switchNameHandler = (newName) => {
+  showPersonsHandler = () => {
     this.setState({
-      persons: [
-        {
-          name: newName, age: 29
-        },
-        {
-          name: 'Ok', age: 30,
-        }
-      ]
+      showPersons: !this.state.showPersons
     })
   }
 
-  nameChangedHandler = (event) => {
+  nameChangedHandler = (event, id) => {
+    const index = this.state.persons.findIndex(p => { return p.id === id });
+    const person = { ...this.state.persons[index] };
+    person.name = event.target.value;
+    const persons = [...this.state.persons];
+    persons[index] = person;
     this.setState({
-      persons: [
-        {
-          name: event.target.value, age: 29
-        },
-        {
-          name: 'Ok', age: 30,
-        }
-      ]
+      persons: persons
     })
   }
 
@@ -44,12 +36,17 @@ class App extends Component {
     return (
       <div className="App">
         <h1> Hi I am a react App </h1>
-        <button onClick={() => this.switchNameHandler('Handler')}>Switch name </button>
-        <Person
-          name={this.state.persons[0].name}
-          age={this.state.persons[0].age}
-          change={this.nameChangedHandler}>My Hobbies are: Coding
-        </Person>
+        <button className="toggleButton" onClick={this.showPersonsHandler}>Toggle Persons </button>
+        {this.state.showPersons ? (this.state.persons.map((person, index) => {
+          return (
+            <Person
+              name={person.name}
+              age={person.age}
+              change={(event) => this.nameChangedHandler(event, person.id)}
+              key={person.id}>
+            </Person>)
+        })) : 'Click on the button to view available persons!'
+        }
       </div>
     );
   }

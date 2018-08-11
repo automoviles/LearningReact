@@ -1,3 +1,18 @@
 .App {
   text-align: center;
 }
+
+.toggleButton {
+  display: block;
+  background-color: green;
+  color:white;
+  padding:1rem;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+}
+
+.toggleButton:hover {
+  background-color: lightgreen;
+  color:black;
+  cursor: pointer;
+}
