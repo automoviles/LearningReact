@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import styles from './App.css';
-import Person from './Person/Person'
+import Person from '../components/Persons/Persons'
+import Cockpit from '../components/Cockpit/Cockpit'
+
 class App extends Component {
 
   state = {
@@ -35,17 +37,12 @@ class App extends Component {
   render() {
     return (
       <div className={styles.App}>
-        <h1> Hi I am a react App </h1>
-        <button className={styles.toggleButton} onClick={this.showPersonsHandler}>Toggle Persons </button>
-        {this.state.showPersons ? (this.state.persons.map((person, index) => {
-          return (
-            <Person
-              name={person.name}
-              age={person.age}
-              change={(event) => this.nameChangedHandler(event, person.id)}
-              key={person.id}>
-            </Person>)
-        })) : 'Click on the button to view available persons!'
+        <Cockpit clicked={this.showPersonsHandler} />
+        {this.state.showPersons ?
+          <Person
+            persons={this.state.persons}
+            change={this.nameChangedHandler} />
+          : 'Click on the button to view available persons!'
         }
       </div>
     );
