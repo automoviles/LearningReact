@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Person.css';
+import PropTypes from 'prop-types';
 
 const Person = (props) => {
     return (
@@ -10,5 +11,12 @@ const Person = (props) => {
         </div>
     )
 };
+
+Person.propTypes = {
+    name: PropTypes.string,
+    age: PropTypes.number,
+    click: PropTypes.func,
+    change: PropTypes.func,
+}
 
 export default Person;

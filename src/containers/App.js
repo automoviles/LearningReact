@@ -18,8 +18,10 @@ class App extends Component {
   }
 
   showPersonsHandler = () => {
-    this.setState({
-      showPersons: !this.state.showPersons
+    this.setState((prevState, props) => {
+      return {
+        showPersons: !prevState.showPersons
+      }
     })
   }
 
